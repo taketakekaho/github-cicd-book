@@ -1,0 +1,18 @@
+name: Manual-Choice
+on:
+  workflow_dispatch:                       # 手動実行イベント
+    inputs:
+      greeting:                            # 入力パラメータ名
+        type: choice                       # データ型（文字列）
+        default: info                     # 入力パラメータのデフォルト値
+        required: true                     # 入力パラメータの必須フラグ
+        description: info or warn or error       # 入力パラメータの概要
+        options:                           # 選択肢
+          - info
+          - warn
+          - error
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ inputs.greeting }}" # 入力パラメータ「greeting」の参照
